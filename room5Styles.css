@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+body {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#gameText {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 50px;
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
+}
+
+.game-text {
+    font-family: 'Press Start 2P', cursive;
+    color: red;
+}  
+
+#knight {
+    width: 336px;
+    height: 336px;
+    overflow: hidden;
+    position: absolute;
+    margin: 0;
+    left: 1px;
+    bottom: 1px;
+    transform: none;
+    animation: moveInFromLeft 3s forwards;
+    
+}
+
+.knightSprite {
+    width: 3072px;
+    height: 336px;
+    animation: knightMove 0.8s steps(8) infinite;
+    background-image: url('Room5Images/WALK.png');
+    background-size: 3072px 336px;
+    image-rendering: pixelated;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.pixelart {
+    image-rendering: pixelated;
+}
+
+@keyframes knightMove {
+   0% { transform: translateX(0);}
+   100% { transform: translateX(-3072px);}
+}
+
+:root {
+    --pixel-size: ;
+}
+@keyframes moveInFromLeft {
+    from {
+      left: -200px;
+    }
+    to {
+      left: 5px; /* Final position */
+    }
+  }
+
+  @keyframes knightIdle {
+    0% { transform: translateX(0);}
+    100% { transform: translateX(-3072px);} /* Adjust based on your IDLE.png width */
+  }
+
+
+
+#deckContainer {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    bottom: 70px;
+}
+
+#deckCards {
+    width: 75px;
+    height: auto;
+    transition: transform 0.3s, filter 0.3s, opacity 0.5s;
+}
+
+#deckCards:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px red) drop-shadow(0 0 20px red);
+}
+#hoverText {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    display: none;
+}
+
+#deckContainer:hover #hoverText{
+    display: block;
+}
+
+#lampContainer {
+    position: absolute;
+    top: 350px;
+    left: 20px;
+    display: inline-block;
+    cursor:pointer;
+}
+
+#lamp {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s, filter 0.3s, opacity 0.5s;
+    filter: drop-shadow( 0 0 0px red);
+}
+
+#lamp:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px red) drop-shadow(0 0 20px red);
+}
+
+#lampText {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    display: none; 
+}
+
+#lampContainer:hover #lampText {
+    display:block;
+}
+
+
+
+#doorContainer {
+    position: absolute;
+    bottom: 150px;
+    right: 255px;
+    display: inline-block;
+    cursor:pointer;
+}
+
+#door {
+    width:250px;
+    transition: filter 0.3s;
+}
+
+#door:hover {
+    filter: drop-shadow(0 0 10px red);
+}
+
+#doorText {
+    display: none;
+    position: absolute;
+    background: black;
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+}
+#doorContainer:hover #doorText {
+    display:block;
+}
+
+#healthBars {
+display: none;
+justify-content: space-between;
+width: 60%;
+margin: auto;
+margin-bottom: 20px;
+}
+
+.health-container {
+    text-align: center;
+    width: 45%;
+}
+
+.health-bar {
+    width: 100%;
+    height: 20px;
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.health {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, green, lime);
+    transition: width 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+#knightHealthContainer {
+    position: absolute;
+    bottom: 270px;
+    left: 150px;
+    width: 150px;
+    display: none;
+    z-index: 10;
+}
+
+#goblinHealthContainer {
+    position: absolute;
+    bottom: 270px;
+    right: 120px;
+    width: 150px;
+    display: none;
+ 
+}
+
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid red;
+    box-shadow: 0 0 10px red;
+    z-index: 2000;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button#tryAgain {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button#tryAgain:hover {
+    background: darkred;
+}
+#winPopup {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid green;
+    box-shadow: 0 0 10px green;
+    z-index: 2000;
+    width: 300px;
+    border-radius: 10px;
+}
+
+button#playAgain {
+    background: green;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button#playAgain:hover {
+    background: darkgreen;
+}
+
+#keyImage {
+    width: 50px;
+    height: auto;
+    filter: drop-shadow(0 0 10px red) drop-shadow(0 0 20px red);
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+}
+
+#keyImage:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px red) drop-shadow(0 0 40px red);
+}
+
+
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 10;
+}
+
+#cards .card {
+    position: relative;
+    transition: transform 0.5s;
+}
+
+button#nextRoomBtn {
+    background: blue;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+button#nextRoomBtn:hover {
+    background: darkblue;
+}
+#winPopup #nextRoomBtn {
+    display: none; /* Hidden by default, shown when the player wins */
+}
